@@ -2,21 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <img src="../assets/fruit3.png" alt="" class="logo">
+        <div class="menu" id="menu">
+            <img src="../assets/menu.png" alt="">
+            <h4>Menu</h4>
+        </div>
         <nav>
-            <ul class="nav_links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">test1</a></li>
-                <li><a href="#">test2</a></li>
-            </ul>
+            <h4>Logo</h4>
         </nav>
         <a href="#" ><button class="nav_btn">Contact</button></a>
     </header>
+    <video autoplay muted loop id="bg-video">
+        <source src="../assets/backgroudvideo.mov" type="">
+    </video>
+
+    <div id="headline">
+        <h1>The Exaltation<br>of the Senses.</h1>
+        <br>
+        <a href="">Discorver our cars</a>
+    </div>
+    <div>
+        <button onclick="pausePlayVideo()" id="pause-btn"><img id="pause-play" src="../assets/pause.png" alt="pause"></button>
+    </div>
+    <div  id="blur"></div>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn" ><img src="../assets/close.png" alt=""></button>
+        <div class="side-list">
+            <ul>
+                <li>Home<img src="../assets/rightarrow.png" alt=""></li>
+                <li>Rentals <img src="../assets/rightarrow.png" alt=""></li>
+                <li>For Sale <img src="../assets/rightarrow.png" alt=""></li>
+                <li><img src="../assets/rightarrow.png" alt=""></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="../js/index.js"></script>
 </body>
 </html>
