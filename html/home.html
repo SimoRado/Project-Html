@@ -2,27 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/products.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="../assets/fruit3.png" alt="logo">
+        <div class="menu" id="menu">
+            <img src="../assets/menuBlack.png" alt="">
+            <h4>Menu</h4>
         </div>
-        <div class="menu-separator"></div>
-        <ul class="nav_links">
-            <li>
-                <a class="on" href="#">
-                    <img src="../assets/home.png" alt="homelogo"> Home
-                </a> 
-            </li>
-            <li><a href=""><img src="../assets/layout.png" alt=""> Dashboard</a></li>
-            <li><a href=""><img src="" alt="">rentals</a></li>
-            <li><a href="./products.html"><img src="" alt="">Products</a></li>
-            <li><a href=""><img src="" alt="">Orders</a></li>
-        </ul>
-        <a href="#" ><button class="nav_btn">Contact</button></a>        
+        <nav>
+            <h4>Logo</h4>
+        </nav>
+        <a href="#" ><button class="nav_btn">Contact</button></a>
     </header>
+    <main>
+        <div  id="blur"></div>
+        <div class="sidebar" id="sidebar">
+            <button class="close-btn" id="close-btn" ><img src="../assets/close.png" alt=""></button>
+            <div class="side-list">
+                <ul>
+                    <li>Home<img src="../assets/rightarrow.png" alt=""></li>
+                    <li>Rentals <img src="../assets/rightarrow.png" alt=""></li>
+                    <li>For Sale <img src="../assets/rightarrow.png" alt=""></li>
+                    <li><img src="../assets/rightarrow.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+
+    <script src="../js/index.js"></script>
 </body>
 </html>

@@ -8,6 +8,18 @@ main{
     width: 100%;
 }
 
+header{
+    border-bottom: 0.5px solid grey;
+}
+
+header .menu{
+    color: black;
+}
+
+.sidebar{
+    border-right: 0.5px solid grey;
+}
+
 .filter-bar{
     background-color: blue;
     width: 100%;
