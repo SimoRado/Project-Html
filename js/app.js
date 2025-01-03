@@ -1,16 +1,3 @@
-var video = document.getElementById("bg-video");
-var pause_play = document.getElementById("pause-play");
-
-function pausePlayVideo(){
-    if (video.paused) {
-        video.play();
-        pause_play.src = "../assets/pause.png";
-    }else{
-        video.pause();
-        pause_play.src = "../assets/play.png";
-    }
-}
-
 class Car{
     constructor(name,img){
         this.name = name;
