@@ -154,10 +154,13 @@ nav{
     height: auto;
 }
 
+.side-list{
+    overflow: visible;
+}
+
 .side-list ul{
     list-style: none;
     width: 300px;
-    overflow: visible;
 }
 
 .side-list ul li{

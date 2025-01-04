@@ -37,7 +37,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 5%; /* 20px for top and bottom and 10% for the right and left*/
+    padding: 15px 5%; /* 20px for top and bottom and 10% for the right and left*/
     border-bottom: 0.5px solid rgba(128, 128, 128, 0.463);
 }
 
@@ -158,6 +158,10 @@ nav{
 .close-btn img{
     width: 13px;
     height: auto;
+}
+
+.side-list{
+    overflow: visible;
 }
 
 .side-list ul{

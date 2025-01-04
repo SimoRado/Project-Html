@@ -23,6 +23,30 @@ class BaseService {
     }
 }
 
+class LocalStorageService extends BaseService {
+  constructor(key) {
+    super();
+    this.key = key;
+  }
+
+  getAll() {
+    return JSON.parse(localStorage.getItem(this.key) ?? "[]");
+  }
+
+  create(data) {
+    // By default the value is an empty list
+    // []
+    const value = JSON.parse(localStorage.getItem(this.key) ?? "[]");
+    console.log(localStorage.getItem(this.key));
+    value.push(data);
+    localStorage.setItem(this.key, JSON.stringify(value));
+  }
+
+  empty() {
+    localStorage.removeItem(this.key);
+  }
+}
+
 class Car{
     constructor(name,img){
         this.name = name;
@@ -55,6 +79,11 @@ class Cars{
 
     }
 }
+
+const tab = new LocalStorageService("cars")
+// tab.empty()
+tab.create({brand: "toyota", model: "corolla", year: 2020})
+
 
 
 
