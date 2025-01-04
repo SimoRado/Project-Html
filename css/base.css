@@ -10,13 +10,17 @@ body{
     /* background-color: #2B3035; */
 }
 
+main{
+    display: flex;
+    background-color: #F4F5F9;
+}
+
 .menu{
     width: 100px;
     height: auto;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: white;
     /* margin-right: auto; */
 }
 
@@ -27,16 +31,19 @@ body{
 
 header{
     z-index: 3;
-    position: fixed;
+    color: black;
+    /* position: absolute; */
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 5%; /* 20px for top and bottom and 10% for the right and left*/
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.463);
 }
 
 nav{
     margin: auto;
+    display: flex;
 }
 
 .nav_btn{
@@ -54,17 +61,74 @@ nav{
 }
 
 .blur{
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
     background-color: hsla(0, 0%, 0%, 0.616);
     filter: blur(100px);
 }
 
+.filter-bar{
+    /* background-color: blue; */
+    background-color: white;
+    display: flex;
+    width: 325px;
+    height: 100vh;
+    margin-bottom: 10px;
+    border-right: 0.5px solid rgba(113, 109, 109, 0.503);
+    padding: 200px 3%;
+    
+}
+
+.filter-bar .filter-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-bar .filter-list label{
+    font-size: 18px;
+    font-weight: normal;
+    font-family: "gothampro", sans-serif;
+    font-weight: 550;
+}
+
+.filter-bar .filter-list select{
+    height: 50px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.412);
+}
+
+.filter-bar .filter-list #price-range{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+
+.filter-bar .filter-list #price-range input{
+    width: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.412);
+    text-align: center;
+}
+
+#min-price{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#max-price{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .sidebar{
-    position: fixed;
+    position: absolute;
+    border-right: 0.5px solid rgba(128, 128, 128, 0.463);
     display: flex;
     z-index: 4;
+    top: 0px;
     left: -500px;
     /* left: 0; */
     width: 400px;

@@ -28,6 +28,7 @@ body{
 #bg-video{
     position: absolute;
     min-width: 100%;
+    min-height: 100%;
     top: 0;
     z-index: 0;    
     /* filter: blur(10px); */
@@ -35,7 +36,7 @@ body{
 
 #pause-btn{
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     background-color: #0087a900;
     border: 2px solid white;
     border-radius: 5px;
@@ -52,7 +53,7 @@ body{
 
 header{
     z-index: 3;
-    position: fixed;
+    position: absolute;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -86,7 +87,7 @@ nav{
 }
 
 #headline{
-    position: fixed;
+    position: absolute;
     top: 43%;
     /* margin-top: 20%; */
     left: 150px;
@@ -119,7 +120,7 @@ nav{
 }
 
 .sidebar{
-    position: fixed;
+    position: absolute;
     display: flex;
     z-index: 4;
     left: -500px;

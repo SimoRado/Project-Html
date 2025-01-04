@@ -1,3 +1,28 @@
+class BaseService {
+    getAll() {
+      throw "NotImplementedError";
+    }
+  
+    // options:
+    // {brand: string, price_lower: number, price_upper: number }
+    filter(options) {
+      throw "NotImplementedError";
+    }
+  
+    getById(id) {
+      throw "NotImplementedError";
+    }
+  
+    create(data) {
+      throw "NotImplementedError";
+    }
+  
+    // Must have id
+    update(data) {
+      throw "NotImplementedError";
+    }
+}
+
 class Car{
     constructor(name,img){
         this.name = name;
@@ -31,8 +56,6 @@ class Cars{
     }
 }
 
-let car1 = new Car("Mouad","../assets/ferrari-siracusa.png");
 
-car1.render();
 
 

@@ -1,37 +1,9 @@
-
-body{
-    display: flex;
-    gap: 0px;
-}
-
-main{
-    width: 100%;
-    display: flex;
-}
-
-header{
-    border-bottom: 0.5px solid grey;
-}
-
-header .menu{
-    color: black;
-}
-
-.sidebar{
-    border-right: 0.5px solid grey;
-}
-
-.filter-bar{
-    background-color: blue;
-    width: 300px;
-    height: 100vh;
-    margin-bottom: 10px;
-}
-
-.product-list{
+/* .product-list{
     display: flex;
     gap: 15px;
     border: 1px solid red ;
+    width: 100%;
+    height: auto;
 }
 
 .product-list .card{
@@ -50,4 +22,4 @@ header .menu{
     padding-top: 10px;
     width: 250px;
     height: auto;
-}
+} */
