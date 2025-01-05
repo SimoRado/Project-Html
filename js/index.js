@@ -1,6 +1,6 @@
 
-let menu = document.getElementById("menu");
-let sidebar = document.getElementById("sidebar")
+let menu = document.getElementById("menu-logo");
+let sidebar = document.getElementById("menu")
 var video = document.getElementById("bg-video");
 var pause_play = document.getElementById("pause-play");
 let closeBtn = document.getElementById("close-btn");

@@ -37,9 +37,11 @@ class LocalStorageService extends BaseService {
     // By default the value is an empty list
     // []
     const value = JSON.parse(localStorage.getItem(this.key) ?? "[]");
-    console.log(localStorage.getItem(this.key));
-    value.push(data);
-    localStorage.setItem(this.key, JSON.stringify(value));
+    if (data != null) {
+      console.log(localStorage.getItem(this.key));
+      value.push(data);
+      localStorage.setItem(this.key, JSON.stringify(value));
+    }
   }
 
   empty() {
@@ -48,43 +50,81 @@ class LocalStorageService extends BaseService {
 }
 
 class Car{
-    constructor(name,img){
+    constructor(name, brand, price, status, detail = "noDetails", img = "../assets/default.png"){
         this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.status = status;
+        this.detail = detail;
         this.img = img;
     }
-    // constructor(){
-    //     this.name = "Noname";
-    //     this.img = "../assets/default.png";
-    // }
-    render(){
+
+    static parse(data){
+      return new Car(data.name, data.brand, data.price, data.status, data.detail, data.img);
+    }
+
+    renderCard(cpt){
         let card = document.createElement('div');
         card.classList.add("card");
+        card.setAttribute('data-id', cpt);
         card.innerHTML = `
             <div class="car-img">
-                <img src="${this.img}" alt="${this.name}">
-            </div>
-            <div class="info">
-                <h4>${this.name}</h4>
-            </div>
+                    <img src="${this.img}" alt="${this.name}">
+                </div>
+                <div class="info">
+                    <h4 class="title">${this.name}</h4>
+                    <h4>Price :</h4>
+                    <p>from   ${this.price}$</p>
+                    <h4>status :</h4> 
+                    <p>${this.status}</p>
+                    <div class="info-btn">
+                        <button>veiw more</button>
+                    </div>
+                </div>
         `;
         return card;
     }
 }
 
 class Cars{
-    constructor() {
-        this.cars = [];
+    constructor(service) {
+      this.service = service;
     }
-    loadCars(data){
+    getAll(){
+      const cars = [];
+      for (const car of this.service.getAll()) {
+        cars.push(Car.parse(car))
+      }
+      return cars;
+    }
 
+    renderList(list){
+      let cpt = 0;
+      for (const car of this.getAll()) {
+        list.appendChild(car.renderCard(cpt++));
+      }
     }
+
 }
 
-const tab = new LocalStorageService("cars")
-// tab.empty()
-tab.create({brand: "toyota", model: "corolla", year: 2020})
+const carsService = new LocalStorageService("cars");
+const carList = new Cars(carsService);
 
+function addCarModalShow() {
+  const addCarModal = document.getElementById("add-car-modal");
+  addCarModal.style.display = "flex";
+}
 
+const productList = document.getElementById('product-list');
+carList.renderList(productList);
 
+const addBtnCard = `
+            <div class="add-card">
+                <button onclick="addCarModalShow()" class="add-btn" id="add-btn"> 
+                    <img src="../assets/add.png" alt="">
+                </button>
+            </div>
+    `
+productList.innerHTML += addBtnCard;
 
 
