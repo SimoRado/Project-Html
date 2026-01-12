@@ -1,0 +1,431 @@
+/* Enhancements CSS - Améliorations Frontend Avancées */
+
+/* Scrollbar personnalisée globale */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0087a9 0%, #00a8cc 100%);
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #006d87 0%, #0087a9 100%);
+}
+
+/* Effet de focus amélioré pour tous les éléments interactifs */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 135, 169, 0.2);
+}
+
+/* Amélioration des inputs */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+textarea:hover,
+select:hover {
+    border-color: #0087a9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 135, 169, 0.1);
+}
+
+/* Effet de glow sur les titres */
+h1, h2, h3 {
+    position: relative;
+}
+
+h1::after,
+h2::after,
+h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0087a9 0%, #00a8cc 100%);
+    transition: width 0.5s ease;
+}
+
+h1:hover::after,
+h2:hover::after,
+h3:hover::after {
+    width: 100%;
+}
+
+/* Effet de particules flottantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(0, 135, 169, 0.3);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Amélioration des modals */
+.modal {
+    animation: modalAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Effet de blur sur le backdrop */
+.modal::backdrop {
+    animation: backdropFade 0.3s ease;
+}
+
+@keyframes backdropFade {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(4px);
+    }
+}
+
+/* Amélioration des cartes avec effet de profondeur */
+.card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg);
+}
+
+/* Effet de gradient animé sur les boutons */
+.btn-gradient-animated {
+    background: linear-gradient(
+        270deg,
+        #0087a9,
+        #00a8cc,
+        #0087a9,
+        #006d87
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Effet de néon sur le texte */
+.text-neon {
+    color: #0087a9;
+    text-shadow: 
+        0 0 5px rgba(0, 135, 169, 0.5),
+        0 0 10px rgba(0, 135, 169, 0.5),
+        0 0 15px rgba(0, 135, 169, 0.5);
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px rgba(0, 135, 169, 0.5),
+            0 0 10px rgba(0, 135, 169, 0.5),
+            0 0 15px rgba(0, 135, 169, 0.5);
+    }
+    50% {
+        text-shadow: 
+            0 0 10px rgba(0, 135, 169, 0.8),
+            0 0 20px rgba(0, 135, 169, 0.8),
+            0 0 30px rgba(0, 135, 169, 0.8);
+    }
+}
+
+/* Effet de shimmer sur les images */
+.image-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+/* Amélioration des tooltips */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background: #2B3035;
+    color: white;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-50%) translateY(-5px);
+    z-index: 1000;
+}
+
+.tooltip:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #2B3035;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Effet de loading avec skeleton */
+.skeleton-loader {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+/* Amélioration des badges */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet de parallaxe léger */
+.parallax-slow {
+    transition: transform 0.3s ease-out;
+}
+
+.parallax-fast {
+    transition: transform 0.1s ease-out;
+}
+
+/* Amélioration des transitions de page */
+.page-transition {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Effet de glassmorphism amélioré */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Effet de hover avec élévation 3D */
+.hover-3d {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.hover-3d:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Amélioration des icônes */
+.icon-bounce:hover {
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Effet de gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, #0087a9 0%, #00a8cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* Amélioration des séparateurs */
+.separator {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0087a9, transparent);
+    margin: 20px 0;
+    position: relative;
+}
+
+.separator::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #0087a9;
+    border-radius: 50%;
+}
+
+/* Effet de pulse sur les notifications */
+.notification-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Amélioration des formulaires */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2B3035;
+    transition: color 0.3s ease;
+}
+
+.form-group input:focus + label,
+.form-group select:focus + label,
+.form-group textarea:focus + label {
+    color: #0087a9;
+}
+
+/* Effet de ripple amélioré */
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple-effect:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .hover-3d:hover {
+        transform: translateY(-5px);
+    }
+    
+    .card-3d:hover {
+        transform: none;
+    }
+}
+

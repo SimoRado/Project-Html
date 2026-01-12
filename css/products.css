@@ -1,187 +1,581 @@
-body{
-    --card-width: 275px;
-    --card-height: 350px;
-    --card-bgcolor: rgb(221, 217, 217);
-    --container-width: 600px;
-    --container-height: 700px;
+/* Products Page - Modern Design */
+
+body {
+    --card-width: 300px;
+    --card-height: 420px;
+    --card-bgcolor: #ffffff;
+    --container-width: 650px;
+    --container-height: 750px;
 }
-.product-list{
-    gap: 25px;
-    padding: 10px;
+
+.product-list {
+    gap: 30px;
+    padding: 30px;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
+    overflow-y: auto;
     margin: auto;
-}
-
-.product-list .card{
-    background-color: var(--card-bgcolor);
-    width: var(--card-width);
-    height: var(--card-height);
-    margin: 5px;
-    box-shadow: 5px 5px 10px hsla(0, 1%, 35%, 0.511);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card .car-img{
-    display: flex;
-    width: 100%;
-    height: 160px;
-    align-items: flex-end;
-}
-
-.card .car-img img{
-    padding-top: 10px;
-    width: 100%;
-    height: auto;
-}
-
-.card .info{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px;
     justify-content: flex-start;
+    align-items: flex-start;
+    animation: fadeIn 0.5s ease;
 }
 
-.card .info .title{
-    width: 100%;
-    margin: 10px;
-    text-align: center;
-    font-size: x-large;
-}
-
-.card .info .info-btn{
-    display: flex;
-    width: 100%;
-    height: 35px;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-.card .info .info-btn button{
-    width: 100%;
-}
-
-.card .info p{
-    margin: auto;
-}
-
-.product-list .add-card{
-    background-color: var(--card-bgcolor);
+.product-list .card {
+    background: var(--card-bgcolor);
     width: var(--card-width);
     height: var(--card-height);
-    margin: 5px;
-    box-shadow: 5px 5px 10px hsla(0, 1%, 35%, 0.511);
-    border-radius: 10px;
+    margin: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    position: relative;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
-.product-list .add-card .add-btn{
+.product-list .card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 135, 169, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.product-list .card:hover::after {
+    opacity: 1;
+}
+
+.product-list .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0087a9 0%, #00a8cc 50%, #0087a9 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.product-list .card:hover::before {
+    transform: scaleX(1);
+}
+
+.product-list .card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(0, 135, 169, 0.3), 0 0 0 1px rgba(0, 135, 169, 0.1);
+    border-color: rgba(0, 135, 169, 0.3);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+}
+
+.card .car-img {
+    display: flex;
     width: 100%;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    overflow: hidden;
+    position: relative;
 }
 
-.product-list .add-card .add-btn:active{
-    scale: 0.9;
-}
-.product-list .add-card .add-btn img{
-    width: 35%;
-    height: auto;
+.card .car-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 135, 169, 0.05) 100%);
+    pointer-events: none;
 }
 
-#add-car-modal{
-    display: none;
-    position: fixed;
+.card .car-img img {
     width: 100%;
     height: 100%;
-    justify-content: center;
-    /* align-items: center; */
-    /* filter: blur(1px); */
-    background-color: rgba(202, 199, 199, 0.57);
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#add-car-modal .container{
+.card:hover .car-img img {
+    transform: scale(1.1);
+}
+
+.card .info {
     display: flex;
     flex-direction: column;
-    width: var(--container-width);
-    height: var(--container-height);
-    background-color: white;
-    border-radius: 15px;
-    margin-top: 80px;
+    width: 100%;
+    padding: 20px;
+    justify-content: space-between;
+    flex: 1;
+    background: var(--card-bgcolor);
+}
+
+.card .info .title {
+    width: 100%;
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.card .info h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card .info p {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.card .info .info-btn {
+    display: flex;
+    width: 100%;
+    gap: 8px;
     justify-content: center;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.card .info .info-btn button {
+    flex: 1;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card .info .info-btn button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.card .info .info-btn button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.card .info .info-btn button:active {
+    transform: scale(0.95);
+}
+
+.card .info .info-btn .view-more-btn {
+    background: linear-gradient(135deg, #0087a9 0%, #00a8cc 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 135, 169, 0.3);
+}
+
+.card .info .info-btn .view-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 135, 169, 0.4);
+}
+
+.card .info .info-btn .edit-btn,
+.card .info .info-btn .delete-btn {
+    width: 40px;
+    padding: 8px;
+    font-size: 1.2rem;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+}
+
+.card .info .info-btn .edit-btn:hover {
+    background: rgba(0, 135, 169, 0.1);
+    border-color: #0087a9;
+    transform: scale(1.1);
+}
+
+.card .info .info-btn .delete-btn:hover {
+    background: rgba(220, 53, 69, 0.1);
+    border-color: #dc3545;
+    transform: scale(1.1);
+}
+
+/* Add Card */
+.product-list .add-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    width: var(--card-width);
+    height: var(--card-height);
+    margin: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--border-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-list .add-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 135, 169, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+}
+
+.product-list .add-card:hover::before {
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.product-list .add-card:hover {
+    border-color: #0087a9;
+    background: linear-gradient(135deg, rgba(0, 135, 169, 0.05) 0%, rgba(0, 168, 204, 0.05) 100%);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 135, 169, 0.2);
+}
+
+.product-list .add-card .add-btn {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.product-list .add-card:hover .add-btn {
+    transform: scale(1.1) rotate(90deg);
+}
+
+.product-list .add-card .add-btn img {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 135, 169, 0.3));
+    transition: filter 0.3s ease;
+}
+
+.product-list .add-card:hover .add-btn img {
+    filter: drop-shadow(0 6px 12px rgba(0, 135, 169, 0.5));
+}
+
+/* Modal Styles */
+.modal {
+    border: none;
+    border-radius: 20px;
+    margin: auto;
+    padding: 0;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    animation: backdropFade 0.3s ease;
+}
+
+@keyframes backdropFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal .container {
+    display: none;
+    flex-direction: column;
+    width: var(--container-width);
+    min-height: var(--container-height);
+    max-height: 90vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal .container .close-btn {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--border-color);
+    z-index: 10;
+}
+
+.modal .container .close-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: rotate(90deg);
+}
+
+.modal .container .close-btn img {
+    width: 18px;
+    height: auto;
+}
+
+.modal .container h1 {
+    margin: 20px 0 30px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0087a9 0%, #00a8cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modal .container form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.modal .container div {
+    display: flex;
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 20px;
+    flex-direction: column;
     gap: 10px;
 }
 
-#add-car-modal .container .close-btn{
-    position: absolute;
-    width: 50px;
+.modal .container div label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.modal .container div input,
+.modal .container div select,
+.modal .container div textarea {
     height: 50px;
-    top: 100px;
-    right: 680px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    background: var(--bg-white);
 }
 
-#add-car-modal .container .close-btn button{
-    display: flex;
-    width: 100%;
-    height: 100%;
+.modal .container div input:focus,
+.modal .container div select:focus,
+.modal .container div textarea:focus {
+    border-color: #0087a9;
+    box-shadow: 0 0 0 3px rgba(0, 135, 169, 0.1);
+    transform: translateY(-1px);
+}
+
+.modal .container div textarea {
+    height: 100px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal .container div button {
+    height: 50px;
+    background: linear-gradient(135deg, #0087a9 0%, #00a8cc 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 135, 169, 0.3);
+}
+
+.modal .container div button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 135, 169, 0.4);
+}
+
+.modal .container div button:active {
+    transform: translateY(0);
+}
+
+/* Info Container */
+.modal #info-container {
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
+    text-align: center;
 }
 
-#add-car-modal .container .close-btn img{
-    width: 15px;
+.modal #info-container .info-img {
+    width: 70%;
+    max-width: 400px;
     height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
 }
 
-#add-car-modal .container h1{
+.modal #info-container .info-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.modal #info-container h1 {
+    font-size: 2.5rem;
+    margin: 20px 0;
+    color: var(--text-dark);
+}
+
+.modal #info-container .info-div {
+    width: 90%;
+    text-align: left;
     margin-top: 20px;
 }
 
-#add-car-modal .container form{
-    width: 80%;
-}
-
-#add-car-modal .container div{
-    display: flex;
-    width: 100%;
-    height: 80px;
+.modal #info-container .info-div h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-top: 15px;
     margin-bottom: 5px;
-    flex-direction: column;
-    /* align-items: center; */
-    gap: 10px;
 }
 
-#add-car-modal .container div input{
-    height: 40px;
-    border: 1px solid rgba(151, 148, 148, 0.639);
+.modal #info-container .info-div p {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-left: 0;
+    line-height: 1.6;
+}
+
+.modal #info-container .info-btn {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.modal #info-container .info-btn button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+/* Card Animation */
+@keyframes cardAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.product-list .card {
+    animation: cardAnimation 0.5s ease backwards;
+}
+
+.product-list .card:nth-child(1) { animation-delay: 0.1s; }
+.product-list .card:nth-child(2) { animation-delay: 0.2s; }
+.product-list .card:nth-child(3) { animation-delay: 0.3s; }
+.product-list .card:nth-child(4) { animation-delay: 0.4s; }
+.product-list .card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Scrollbar */
+.product-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.product-list::-webkit-scrollbar-track {
+    background: var(--bg-light);
     border-radius: 5px;
-    outline: none;
-    padding: 5px;
 }
 
-#add-car-modal .container div select{
-    height: 40px ;
-    border: 1px solid rgba(151, 148, 148, 0.639);
+.product-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0087a9 0%, #00a8cc 100%);
     border-radius: 5px;
 }
 
-#add-car-modal .container div #details{
-    height: 60px;
-    outline: none;
+.product-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #006d87 0%, #0087a9 100%);
 }
 
-#add-car-modal .container div button{
-    height: 40px;
+/* Responsive */
+@media (max-width: 768px) {
+    .product-list {
+        padding: 15px;
+        gap: 20px;
+    }
+    
+    .product-list .card,
+    .product-list .add-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .modal .container {
+        width: 95vw;
+        padding: 20px;
+    }
 }

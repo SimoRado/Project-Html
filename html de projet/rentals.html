@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/enhancements.css">
+    <title>Document</title>
+    <!-- Modal styling removed to match allproduct.html (uses global CSS) -->
+</head>
+<body>
+    <header>
+        <div class="menu-logo" id="menu-logo">
+            <img src="../assets/menuBlack.png" alt="">
+            <h4>Menu</h4>
+        </div>
+        <nav>
+            <h4>Logo</h4>
+        </nav>
+        <a href="#" ><button class="nav_btn">Contact</button></a>
+        <div class="menu" id="menu">
+            <button class="close-btn" id="close-btn" ><img src="../assets/closeBlack.png" alt=""></button>
+            <div class="side-list">
+                <ul>
+                    <li><a href="index.html"> Home<img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="dashboard.html"> Dashboard<img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="allproduct.html"> All Cars <img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="rentals.html"> Rentals <img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="reviews.html"> Reviews <img src="../assets/rightarrow.png" alt=""> </a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main id="main">
+        <div class="filter-bar">
+            <h1>Filter Bar</h1>
+            <div class="filter-list">
+                <div class="filter-item">
+                    <label for="brand-select">Brand:</label>
+                    <select name="" id="brand-select">
+                        <option value="none"> Select a Brand</option>
+                        <option value="Porshe"> Porshe</option>
+                        <option value="Bmw"> Bmw</option>
+                        <option value="Ferrari"> Ferrari</option>
+                        <option value="Ferrari"> Dacia</option>
+                        <option value="Ferrari"> Renault</option>
+                        <option value="Ferrari"> peugeot</option>
+                        <option value="Ferrari"> volkeswagen</option>
+
+                    </select>
+                </div>
+                <div class="filter-item" id="filter-status">
+                    <label for="status-select">Status:</label>
+                    <select name="" id="status-select">
+                        <option value="none"> Select a status</option>
+                        <option value="Rental"> Rentals</option>
+                        {# <option value="Buy"> Buy</option>
+                        <option value="Rental/Buy"> Rantal/Buy</option> #}
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label for="price-range">Price range:</label>
+                    <div id="price-range">
+                        <input type="number" name="" placeholder="from  x MAD" id="min-price">
+                        <input type="number" name="" placeholder="to x MAD" id="max-price">
+                    </div>
+                </div>
+            </div>
+            <button class="filter-btn" id="search-btn" onclick="filter()"> Search </button>
+            <button class="filter-btn" id="reset-btn" onclick="reset()"> Reset </button>
+        </div>
+        <div class="product-list" id="product-list">
+            
+        </div>
+
+        <dialog class="modal" id="modal">
+            <div class="container" id="info-container">
+               
+            </div>
+            <div class="container" id="form-container">
+                <h1>Add a car</h1>
+                <div class="close-btn">
+                  <button onclick="removeForm()" ><img src="../assets/closeBlack.png" alt=""></button>
+                </div>
+                <form id="add-car-form" method="dialog">
+                    <div>
+                        <button id="add-btn" type="submit">Add car</button>
+                    </div>
+                    <div>
+                        <label for="name">Name :</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div>
+                        <label for="price">Price :</label>
+                        <input type="number" name="price" id="price" required>
+                    </div>
+                    <div>
+                        <label for="add-brand-select">Brand :</label>
+                        <select name="brand" id="add-brand-select" required>
+                            <option value=""> Select a Brand</option>
+                            <option value="Porsche">Porsche</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Dacia">Dacia</option>
+                            <option value="Renault">Renault</option>
+                            <option value="Peugeot">Peugeot</option>
+                            <option value="Volkswagen">Volkswagen</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="add-status-select">Status :</label>
+                        <select name="status" id="add-status-select" required>
+                            <option value=""> Select a status</option>
+                            <option value="Rental">Rent</option>
+                            <option value="Buy">Buy</option>
+                            <option value="Rental/Buy">Rent/Buy</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="details">Details about the car :</label>
+                        <textarea name="details" id="details"></textarea>
+                    </div>
+                    <div>
+                        <label for="img">Image</label>
+                        <input type="file" name="img" id="img" accept="image/*">
+                    </div>
+                </form>
+            </div>
+        </dialog>
+        
+        <!-- Delete confirmation dialog -->
+        <dialog id="delete-modal" class="danger-modal">
+            <div style="padding:1rem; max-width:420px;">
+                <h3 style="color:#b71c1c; margin-bottom:8px;">Confirmer la suppression</h3>
+                <p id="delete-modal-text">Voulez-vous vraiment supprimer cette voiture ? Cette action est irréversible.</p>
+                <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
+                    <button id="delete-cancel" type="button" style="background:#eee; border:none; padding:8px 12px; border-radius:6px;">Annuler</button>
+                    <button id="delete-confirm" type="button" style="background:#b71c1c; color:white; border:none; padding:8px 12px; border-radius:6px;">Supprimer</button>
+                </div>
+            </div>
+        </dialog>
+    </main>
+    
+
+    <script src="../js/index.js"></script>
+    <script src="../js/classes.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/rentals.js"></script>
+    <script>
+    // Delete flow: open modal, confirm removes from localStorage and re-render
+    (function(){
+        let pendingIndex = null;
+        document.addEventListener('click', function(e){
+            if (e.target.matches('.delete-btn')){
+                const card = e.target.closest('.card');
+                if(!card) return;
+                pendingIndex = parseInt(card.getAttribute('data-id'));
+                const delModal = document.getElementById('delete-modal');
+                delModal.showModal();
+            }
+        });
+
+        const delCancel = document.getElementById('delete-cancel');
+        const delConfirm = document.getElementById('delete-confirm');
+        const delModal = document.getElementById('delete-modal');
+
+        if(delCancel) delCancel.addEventListener('click', function(){
+            pendingIndex = null;
+            delModal.close();
+        });
+
+        if(delConfirm) delConfirm.addEventListener('click', function(){
+            if (pendingIndex === null) return;
+            // carsService is defined in classes.js
+            try{
+                carsService.removeAt(pendingIndex);
+            }catch(err){ console.error(err); }
+            pendingIndex = null;
+            delModal.close();
+            // Re-render list
+            Render(carList, productList, filterCondition);
+        });
+    })();
+    </script>
+</body>
+</html>

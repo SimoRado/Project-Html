@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/enhancements.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="menu-logo" id="menu-logo" onclick="openMenu()">
+            <img src="../assets/menu.png" alt="">
+            <h4>Menu</h4>
+        </div>
+        <nav>
+            <h4>Logo</h4>
+        </nav>
+              <a href="#" ><button class="nav_btn">Contact</button>
+                <section id="contact" class="section-content" style="display: none;">
+                    <h2>Contact</h2>
+                    <p>Email: laazizsalaheddine@gmail.com</p>
+                    <p>Téléphone: 0506060606</p>
+                    <p>Adresse: Sidi Maarouf, Casablanca</p>
+                </section>
+                <script>
+                    function afficherContact() {
+                        document.getElementById("contact").style.display = "block";
+                    }
+                </script>
+        </a>
+        <div class="menu" id="menu">
+            <button class="close-btn" id="close-btn" onclick="closeMenu()"><img src="../assets/close.png" alt=""></button>
+            <div class="side-list">
+                <ul>
+                    <li><a href="index.html"> Home<img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="dashboard.html"> Dashboard<img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="allproduct.html"> All Cars <img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="rentals.html"> Rentals <img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="reviews.html"> Reviews <img src="../assets/rightarrow.png" alt=""> </a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <video autoplay muted loop id="bg-video">
+            <source src="../assets/backgroudvideo.mov" type="">
+        </video>
+        <div id="headline">
+            <h1>The Exaltation<br>of the Senses.</h1>
+            <br>
+            <a href="">Discorver our cars</a>
+        </div>
+        <div>
+            <button onclick="pausePlayVideo()" id="pause-btn"><img id="pause-play" src="../assets/pause.png" alt="pause"></button>
+        </div>
+        <div  id="blur"></div>
+    </main>
+    
+
+    <script src="../js/index.js"></script>
+</body>
+</html>

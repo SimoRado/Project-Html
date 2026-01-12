@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Car Rental</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/enhancements.css">
+    <script src="../assets/libs/chart-js/Chart.bundle.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="menu-logo" id="menu-logo">
+            <img src="../assets/menuBlack.png" alt="">
+            <h4>Menu</h4>
+        </div>
+        <nav>
+            <h4>Logo</h4>
+        </nav>
+        <a href="#"><button class="nav_btn">Contact</button></a>
+        <div class="menu" id="menu">
+            <button class="close-btn" id="close-btn"><img src="../assets/closeBlack.png" alt=""></button>
+            <div class="side-list">
+                <ul>
+                    <li><a href="index.html"> Home<img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="dashboard.html"> Dashboard<img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="allproduct.html"> All Cars <img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="rentals.html"> Rentals <img src="../assets/rightarrow.png" alt=""> </a></li>
+                    <li><a href="reviews.html"> Reviews <img src="../assets/rightarrow.png" alt=""> </a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="dashboard-container">
+            <!-- Header Section -->
+            <div class="dashboard-header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p class="dashboard-subtitle">Vue d'ensemble de votre activité</p>
+                </div>
+                <div class="dashboard-date" id="current-date"></div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card stat-primary">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-info">
+                        <h3 id="total-cars">0</h3>
+                        <p>Total Voitures</p>
+                        <span class="stat-trend positive">↑ +12%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-success">
+                    <div class="stat-icon">🔑</div>
+                    <div class="stat-info">
+                        <h3 id="rental-cars">0</h3>
+                        <p>En Location</p>
+                        <span class="stat-trend positive">↑ +8%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-warning">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="total-revenue">0 MAD</h3>
+                        <p>Revenus Totaux</p>
+                        <span class="stat-trend positive">↑ +15%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-info">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <h3 id="avg-price">0 MAD</h3>
+                        <p>Prix Moyen</p>
+                        <span class="stat-trend neutral">→ Stable</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-wrapper">
+                    <div class="chart-card">
+                        <h3>Répartition par Marque</h3>
+                        <canvas id="brandChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Répartition par Statut</h3>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="chart-card chart-full">
+                        <h3>Distribution des Prix</h3>
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tables Section -->
+            <div class="tables-section">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Voitures Récentes</h3>
+                        <a href="allproduct.html" class="view-all">Voir tout →</a>
+                    </div>
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Voiture</th>
+                                <th>Marque</th>
+                                <th>Prix</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-cars-tbody">
+                            <!-- Rempli dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Top Marques</h3>
+                    </div>
+                    <div class="brand-list" id="top-brands">
+                        <!-- Rempli dynamiquement -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Actions Rapides</h3>
+                <div class="actions-grid">
+                    <button class="action-btn" onclick="window.location.href='allproduct.html'">
+                        <span class="action-icon">➕</span>
+                        <span>Ajouter une Voiture</span>
+                    </button>
+                    <button class="action-btn" onclick="exportData()">
+                        <span class="action-icon">📥</span>
+                        <span>Exporter les Données</span>
+                    </button>
+                    <button class="action-btn" onclick="refreshDashboard()">
+                        <span class="action-icon">🔄</span>
+                        <span>Actualiser</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='allproduct.html'">
+                        <span class="action-icon">📊</span>
+                        <span>Gérer les Voitures</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/index.js"></script>
+    <script src="../js/classes.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
